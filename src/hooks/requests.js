@@ -1,5 +1,5 @@
 // const API_URL = "http://localhost:9000";
-const API_URL = "https://nasa.grpavan.world/";
+const API_URL = "https://nasa.grpavan.world";
 // const API_URL = "https://nasa-project-woad.vercel.app/";
 
 async function httpGetPlanets() {
