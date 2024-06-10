@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { withStyles, Appear, Link, Paragraph, Table, Words } from "arwes";
-
 import Clickable from "../components/Clickable";
 
 const styles = () => ({
@@ -8,11 +7,29 @@ const styles = () => ({
     color: "red",
     textDecoration: "none",
   },
+  tableContainer: {
+    width: "100%",
+    overflowX: "auto",
+  },
+  table: {
+    width: "100%",
+    tableLayout: "fixed",
+    "@media (max-width: 768px)": {
+      width: "100%",
+      display: "block",
+      overflowX: "auto",
+      whiteSpace: "nowrap",
+    },
+  },
+  th: {
+    padding: "0.5rem",
+    textAlign: "left",
+    whiteSpace: "nowrap",
+  },
 });
 
 const Upcoming = (props) => {
   const { entered, launches, classes, abortLaunch } = props;
-  console.log(launches, "lla");
 
   const tableBody = useMemo(() => {
     return launches
@@ -47,21 +64,31 @@ const Upcoming = (props) => {
         to Mastery rockets.
       </Paragraph>
       <Words animate>Warning! Clicking on the ✖ aborts the mission.</Words>
-      <Table animate show={entered}>
-        <table style={{ tableLayout: "fixed" }}>
-          <thead>
-            <tr>
-              <th style={{ width: "3rem" }}></th>
-              <th style={{ width: "3rem" }}>No.</th>
-              <th style={{ width: "10rem" }}>Date</th>
-              <th style={{ width: "11rem" }}>Mission</th>
-              <th style={{ width: "11rem" }}>Rocket</th>
-              <th>Destination</th>
-            </tr>
-          </thead>
-          <tbody>{tableBody}</tbody>
-        </table>
-      </Table>
+      <div className={classes.tableContainer}>
+        <Table animate show={entered}>
+          <table className={classes.table}>
+            <thead>
+              <tr>
+                <th className={classes.th} style={{ width: "3rem" }}></th>
+                <th className={classes.th} style={{ width: "3rem" }}>
+                  No.
+                </th>
+                <th className={classes.th} style={{ width: "10rem" }}>
+                  Date
+                </th>
+                <th className={classes.th} style={{ width: "11rem" }}>
+                  Mission
+                </th>
+                <th className={classes.th} style={{ width: "11rem" }}>
+                  Rocket
+                </th>
+                <th className={classes.th}>Destination</th>
+              </tr>
+            </thead>
+            <tbody>{tableBody}</tbody>
+          </table>
+        </Table>
+      </div>
     </Appear>
   );
 };

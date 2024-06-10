@@ -23,6 +23,29 @@ const History = (props) => {
       });
   }, [props.launches]);
 
+  const tableStyles = {
+    tableLayout: "fixed",
+    width: "100%",
+    maxWidth: "100%",
+    overflowX: "auto",
+    display: "block",
+  };
+
+  const thStyles = {
+    padding: "0.5rem",
+    textAlign: "left",
+    whiteSpace: "nowrap",
+  };
+
+  const responsiveTableStyles = {
+    ...tableStyles,
+    "@media (max-width: 768px)": {
+      display: "block",
+      overflowX: "auto",
+      whiteSpace: "nowrap",
+    },
+  };
+
   return (
     <article id="history">
       <Appear animate show={props.entered}>
@@ -31,15 +54,15 @@ const History = (props) => {
           the year 2006.
         </Paragraph>
         <Table animate>
-          <table style={{ tableLayout: "fixed" }}>
+          <table style={responsiveTableStyles}>
             <thead>
               <tr>
-                <th style={{ width: "2rem" }}></th>
-                <th style={{ width: "3rem" }}>No.</th>
-                <th style={{ width: "9rem" }}>Date</th>
-                <th>Mission</th>
-                <th style={{ width: "7rem" }}>Rocket</th>
-                <th>Customers</th>
+                <th style={{ ...thStyles, width: "2rem" }}></th>
+                <th style={{ ...thStyles, width: "3rem" }}>No.</th>
+                <th style={{ ...thStyles, width: "9rem" }}>Date</th>
+                <th style={thStyles}>Mission</th>
+                <th style={{ ...thStyles, width: "7rem" }}>Rocket</th>
+                <th style={thStyles}>Customers</th>
               </tr>
             </thead>
             <tbody>{tableBody}</tbody>

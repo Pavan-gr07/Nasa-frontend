@@ -13,6 +13,21 @@ const Launch = (props) => {
 
   const today = new Date().toISOString().split("T")[0];
 
+  const formStyles = {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "10px 20px",
+    width: "100%",
+    maxWidth: "600px",
+  };
+
+  const responsiveFormStyles = {
+    ...formStyles,
+    "@media (max-width: 768px)": {
+      gridTemplateColumns: "1fr",
+    },
+  };
+
   return (
     <Appear id="launch" animate show={props.entered}>
       <Paragraph>
@@ -31,14 +46,7 @@ const Launch = (props) => {
         </li>
       </ul>
 
-      <form
-        onSubmit={props.submitLaunch}
-        style={{
-          display: "inline-grid",
-          gridTemplateColumns: "auto auto",
-          gridGap: "10px 20px",
-        }}
-      >
+      <form onSubmit={props.submitLaunch} style={responsiveFormStyles}>
         <label htmlFor="launch-day">Launch Date</label>
         <input
           type="date"
